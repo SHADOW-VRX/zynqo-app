@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Zynqo - Premium Checkout-Free Shopping</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app">
+        <!-- Animated Background -->
+        <div class="bg-gradient"></div>
+        <div class="bg-particles"></div>
+
+        <!-- Header -->
+        <header class="header glass">
+            <div class="header-left">
+                <button class="menu-btn" id="menuBtn">
+                    <i class="fas fa-th-large"></i>
+                </button>
+                <div class="logo-wrapper">
+                    <div class="logo-icon">
+                        <img src="/static/logo.png" alt="Logo" class="custom-logo" id="customLogoImg" onerror="this.style.display='none'">
+                        <i class="fas fa-qrcode" id="defaultLogoIcon" style="display: none;"></i>
+                        <i class="fas fa-bolt" id="defaultBoltIcon" style="display: none;"></i>
+                    </div>
+                    <h1 class="logo-text">Zynqo</h1>
+                </div>
+                <span class="badge">Scan & Go</span>
+            </div>
+            <div class="header-right">
+                <button class="icon-btn" id="historyBtn" title="Order History">
+                    <i class="fas fa-receipt"></i>
+                </button>
+                <button class="icon-btn" id="clearCartBtn" title="Clear Cart">
+                    <i class="fas fa-trash-alt"></i>
+                </button>
+            </div>
+        </header>
+
+        <main class="main">
+            <!-- Scanner Section -->
+            <div class="scanner-section glass-card">
+                <div class="section-badge">
+                    <i class="fas fa-camera"></i>
+                    <span>Quick Scan</span>
+                </div>
+                <h2>Scan Product Barcode</h2>
+                <p class="section-desc">Point camera at any barcode or QR code</p>
+                
+                <div class="scanner-container" id="scannerContainer">
+                    <div class="scanner-preview-wrapper">
+                        <div id="qr-reader" class="qr-reader"></div>
+                        <div class="scanning-line"></div>
+                        <div class="scanning-glow"></div>
+                    </div>
+                    <div class="scanner-actions">
+                        <button class="btn-primary pulse-btn" id="startScannerBtn">
+                            <i class="fas fa-play"></i> Start Scanning
+                        </button>
+                        <button class="btn-secondary" id="stopScannerBtn">
+                            <i class="fas fa-stop"></i> Stop
+                        </button>
+                    </div>
+                </div>
+
+                <div class="manual-entry">
+                    <div class="divider">
+                        <span>or enter manually</span>
+                    </div>
+                    <div class="input-group">
+                        <i class="fas fa-barcode"></i>
+                        <input type="text" id="manualCode" placeholder="Enter product code">
+                        <button class="btn-add" id="manualAddBtn">
+                            <i class="fas fa-plus"></i> Add
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cart Section -->
+            <div class="cart-section glass-card">
+                <div class="cart-header">
+                    <div class="section-badge">
+                        <i class="fas fa-shopping-bag"></i>
+                        <span>Shopping Cart</span>
+                    </div>
+                    <span class="cart-count" id="cartCount">0</span>
+                </div>
+                
+                <div id="cart-items-container" class="cart-items">
+                    <div class="empty-cart">
+                        <div class="empty-cart-icon">
+                            <i class="fas fa-shopping-basket"></i>
+                        </div>
+                        <h3>Your cart is empty</h3>
+                        <p>Scan items or browse categories to start shopping</p>
+                    </div>
+                </div>
+                
+                <div class="cart-summary">
+                    <div class="summary-row">
+                        <span>Subtotal</span>
+                        <span id="subtotal">₹0.00</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Tax (5% GST)</span>
+                        <span id="tax">₹0.00</span>
+                    </div>
+                    <div class="summary-row total">
+                        <span>Total</span>
+                        <span id="total">₹0.00</span>
+                    </div>
+                    <button class="btn-payment" id="checkoutBtn">
+                        <span>Pay Now</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </main>
+
+        <!-- Categories Sidebar -->
+        <div id="categoriesSidebar" class="categories-sidebar glass">
+            <div class="sidebar-header">
+                <h3><i class="fas fa-tags"></i> Categories</h3>
+                <button class="close-sidebar" id="closeSidebarBtn">&times;</button>
+            </div>
+            <div id="categoriesList" class="categories-list"></div>
+        </div>
+        <div id="sidebarOverlay" class="sidebar-overlay"></div>
+
+        <!-- Category Products Modal -->
+        <div id="categoryModal" class="modal premium-modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 id="selectedCategoryName">Products</h2>
+                    <button class="close-modal" onclick="closeCategoryModal()">&times;</button>
+                </div>
+                <div id="categoryProductsList" class="category-products-list"></div>
+            </div>
+        </div>
+
+        <!-- Receipt Modal -->
+        <div id="receiptModal" class="modal premium-modal">
+            <div class="modal-content receipt-modal-content">
+                <div class="success-animation">
+                    <div class="checkmark-circle">
+                        <i class="fas fa-check"></i>
+                    </div>
+                </div>
+                <div class="modal-header">
+                    <h2>Payment Successful!</h2>
+                    <button class="close-modal" onclick="closeReceiptModal()">&times;</button>
+                </div>
+                <div id="receiptContent" class="receipt-content"></div>
+                <div class="modal-footer">
+                    <button class="btn-secondary" onclick="closeReceiptModal()">Close</button>
+                    <button class="btn-primary" onclick="printReceipt()">
+                        <i class="fas fa-print"></i> Print
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Order History Modal -->
+        <div id="historyModal" class="modal premium-modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2><i class="fas fa-history"></i> Order History</h2>
+                    <button class="close-modal" id="closeHistoryModalBtn">&times;</button>
+                </div>
+                <div id="historyContent" class="history-content"></div>
+            </div>
+        </div>
+
+        <!-- Loading Overlay -->
+        <div id="loadingOverlay" class="loading-overlay">
+            <div class="loading-spinner">
+                <div class="spinner"></div>
+                <p>Processing...</p>
+            </div>
+        </div>
+
+        <!-- Toast Notification -->
+        <div id="toast" class="toast">
+            <div class="toast-icon"></div>
+            <span id="toastMessage"></span>
+        </div>
+
+        <!-- Footer -->
+        <footer class="main-footer glass">
+            <div class="footer-content">
+                <div class="creator-info">
+                    <span>Created by <strong>SHADOW</strong></span>
+                </div>
+                <div class="social-links">
+                    <a href="https://github.com/" target="_blank" class="social-link" title="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://linkedin.com/" target="_blank" class="social-link" title="LinkedIn">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="https://instagram.com/" target="_blank" class="social-link" title="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="/static/script.js"></script>
+    <script>
+        // Handle logo display
+        document.addEventListener('DOMContentLoaded', function() {
+            const logoImg = document.getElementById('customLogoImg');
+            const defaultLogoIcon = document.getElementById('defaultLogoIcon');
+            const defaultBoltIcon = document.getElementById('defaultBoltIcon');
+            
+            if (logoImg && logoImg.complete && logoImg.naturalHeight === 0) {
+                logoImg.style.display = 'none';
+                defaultLogoIcon.style.display = 'inline-block';
+                defaultBoltIcon.style.display = 'inline-block';
+            } else if (logoImg && logoImg.src && logoImg.src.includes('logo.png')) {
+                // Check if image loaded successfully
+                logoImg.onload = function() {
+                    // Image loaded successfully, hide default icons
+                    defaultLogoIcon.style.display = 'none';
+                    defaultBoltIcon.style.display = 'none';
+                };
+                logoImg.onerror = function() {
+                    logoImg.style.display = 'none';
+                    defaultLogoIcon.style.display = 'inline-block';
+                    defaultBoltIcon.style.display = 'inline-block';
+                };
+            }
+        });
+    </script>
+</body>
+</html>
