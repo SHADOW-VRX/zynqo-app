@@ -1,0 +1,147 @@
+[
+  {
+    "id": "PROD001",
+    "name": "Organic Fresh Milk",
+    "price": 65,
+    "code": "8901234567890",
+    "category": "Dairy",
+    "image": "🥛",
+    "description": "Fresh organic milk from grass-fed cows"
+  },
+  {
+    "id": "PROD002",
+    "name": "Whole Wheat Bread",
+    "price": 45,
+    "code": "8901234567891",
+    "category": "Bakery",
+    "image": "🍞",
+    "description": "Freshly baked whole wheat bread"
+  },
+  {
+    "id": "PROD003",
+    "name": "Farm Fresh Eggs",
+    "price": 55,
+    "code": "8901234567892",
+    "category": "Dairy",
+    "image": "🥚",
+    "description": "Pack of 6 farm-fresh eggs"
+  },
+  {
+    "id": "PROD004",
+    "name": "Basmati Rice",
+    "price": 120,
+    "code": "8901234567893",
+    "category": "Grains",
+    "image": "🍚",
+    "description": "Premium aged basmati rice (1kg)"
+  },
+  {
+    "id": "PROD005",
+    "name": "Premium Olive Oil",
+    "price": 450,
+    "code": "8901234567894",
+    "category": "Cooking",
+    "image": "🫒",
+    "description": "Extra virgin olive oil (500ml)"
+  },
+  {
+    "id": "PROD006",
+    "name": "Fresh Apples",
+    "price": 80,
+    "code": "8901234567895",
+    "category": "Fruits",
+    "image": "🍎",
+    "description": "Crisp and juicy red apples (4 pcs)"
+  },
+  {
+    "id": "PROD007",
+    "name": "Potato Chips",
+    "price": 30,
+    "code": "8901234567896",
+    "category": "Snacks",
+    "image": "🥔",
+    "description": "Classic salted potato chips"
+  },
+  {
+    "id": "PROD008",
+    "name": "Coca-Cola",
+    "price": 40,
+    "code": "8901234567897",
+    "category": "Beverages",
+    "image": "🥤",
+    "description": "Refreshing cola drink (500ml)"
+  },
+  {
+    "id": "PROD009",
+    "name": "Toothpaste",
+    "price": 85,
+    "code": "8901234567898",
+    "category": "Personal Care",
+    "image": "🪥",
+    "description": "Cavity protection toothpaste (100g)"
+  },
+  {
+    "id": "PROD010",
+    "name": "Hand Sanitizer",
+    "price": 95,
+    "code": "8901234567899",
+    "category": "Health",
+    "image": "🧴",
+    "description": "Alcohol-based hand sanitizer (100ml)"
+  },
+  {
+    "id": "PROD011",
+    "name": "Notebook",
+    "price": 35,
+    "code": "8901234567800",
+    "category": "Stationery",
+    "image": "📓",
+    "description": "100-page ruled notebook"
+  },
+  {
+    "id": "PROD012",
+    "name": "Pen Pack",
+    "price": 50,
+    "code": "8901234567801",
+    "category": "Stationery",
+    "image": "✒️",
+    "description": "Pack of 5 ballpoint pens"
+  },
+  {
+    "id": "PROD013",
+    "name": "Face Mask Pack",
+    "price": 150,
+    "code": "8901234567802",
+    "category": "Health",
+    "image": "😷",
+    "description": "Disposable face masks (pack of 10)"
+  },
+  {
+    "id": "PROD014",
+    "name": "Butter Chicken Paste",
+    "price": 110,
+    "code": "8901234567803",
+    "category": "Cooking",
+    "image": "🍛",
+    "description": "Authentic butter chicken curry paste"
+  },
+  {
+    "id": "PROD015",
+    "name": "Greek Yogurt",
+    "price": 75,
+    "code": "8901234567804",
+    "category": "Dairy",
+    "image": "🥣",
+    "description": "Strained Greek yogurt (400g)"
+  },
+  {
+    "id": "PROD016",
+    "name": "Black Jack",
+    "price": 5.0,
+    "code": "8902351993227",
+    "category": "biscuit",
+    "image": "",
+    "description": "cream biscuit",
+    "stock": 5
+  }
+]
