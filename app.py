@@ -22,8 +22,8 @@ ORDERS_FILE = 'orders.json'
 
 # Owner credentials (in production, use environment variables)
 OWNER_CREDENTIALS = {
-    'username': os.environ.get('OWNER_USERNAME', 'admin'),
-    'password': os.environ.get('OWNER_PASSWORD', 'admin123')
+    'username': os.environ.get('OWNER_USERNAME', 'shadow'),
+    'password': os.environ.get('OWNER_PASSWORD', 'shadow@123')
 }
 
 def login_required(f):
